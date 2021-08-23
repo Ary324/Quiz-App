@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Home Page</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+  <title>Home Page</title>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  <body>
-    <%- include('headers_footers/_headers') %>
-    <h1>Hello World!</h1>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <%- include('headers_footers/_headers') %>
+
+    <main>
+      <article class='quiz-list'>
+        <p>Public Quizzes!</p>
+        <ol class='order-list'>
+          <a href="/loadQuiz">Quiz 1</a>
+          <a href="/loadQuiz">Quiz 2</a>
+          <a href="/loadQuiz">Quiz 3</a>
+          <a href="/loadQuiz">Quiz 4</a>
+          <a href="/loadQuiz">Quiz 5</a>
+          <a href="/loadQuiz">Quiz 6</a>
+          <a href="/loadQuiz">Quiz 7</a>
+          <a href="/loadQuiz">Quiz 8</a>
+        </ol>
+      </article>
+    </main>
+
     <%- include('headers_footers/_footers') %>
-  </body>
+</body>
+
 </html>
