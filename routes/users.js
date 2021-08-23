@@ -6,7 +6,7 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -21,5 +21,23 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+  router.get('/login', (req, res) => {
+    const userID = req.session.userID;
+    if (userID) {
+      res.redirect('/your_quizzes');
+    } else {
+      res.render('login');
+    }
+  });
+
+  router.get('/register', (req, res) => {
+    const userID = req.session.userID;
+    if (userID) {
+      res.redirect('your_quizzes');
+    } else {
+      res.render('register');
+    }
+  });
+
   return router;
 };
