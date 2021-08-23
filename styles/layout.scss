@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  background: #222;
+  background: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 400;
 
@@ -52,3 +52,68 @@ nav a{
 nav a:hover {
   color: #000;
 }
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 80%;
+}
+
+.content-table thead tr {
+  background-color: #55d6aa;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table a:hover{
+  color: #55d6aa;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  div {
+    padding: 10px;
+    color: #444;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+}
+
+.myButton {
+	background-color:#55d6aa;
+	border-radius:28px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #55d6aa;
+}
+
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+
+
+
+
