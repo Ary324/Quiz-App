@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS answers CASCADE;
+CREATE TABLE answers (
+  id SERIAL PRIMARY KEY NOT NULL,
+  answer TEXT NOT NULL,
+  is_correct BOOLEAN NOT NULL,
+  question_id INTEGER REFERENCES questions(id) ON DELETE CASCADE
+);
