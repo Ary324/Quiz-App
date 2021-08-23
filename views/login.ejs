@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>QuizApp</title>
+</head>
+
+<body>
+
+
+    <%- include('./headers_footers/_headers') %>
+
+
+  <main style="margin: 1em;">
+
+
+    <h3>Login</h3>
+
+
+    <form class="form-inline" action="/login" method="POST">
+
+      <h5 class="card-title">Email address</h5>
+      <input class="form-control" type="email" name="email" placeholder="Enter email" style="width: 300px; margin: 1em" required>
+
+
+      <h5 class="card-title">Password</h5>
+      <input class="form-control" type="password" name="password" placeholder="Password" style="width: 300px; margin: 1em" required>
+
+
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+
+  </main>
+  </body>
+</html>
