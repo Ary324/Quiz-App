@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -29,6 +30,41 @@ module.exports = (db) => {
     } else {
       res.render('login');
     }
+  });
+
+  router.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    let queryString = `
+      SELECT * FROM users
+    `;
+
+    let queryParams = [email];
+
+    db.query(queryString, queryParams)
+      .then((data) => {
+        if (bcrypt.compareSync(password, data.rows[0].password)) {
+          req.session = {
+            userID: data.rows[0].id,
+            userEmail: data.rows[0].email,
+            userName: data.rows[0].username
+          };
+          res.redirect('/your_quizzes');
+        } else {
+          res.status(403);
+          res.send("Incorrect Email And/Or Password");
+        }
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  router.post('/logout', (req, res) => {
+    req.session = null;
+    res.redirect('/users/login');
   });
 
   router.get('/register', (req, res) => {
