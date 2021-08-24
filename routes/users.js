@@ -76,5 +76,43 @@ module.exports = (db) => {
     }
   });
 
+  router.post('/register', (req, res) => {
+    const { username, email, password } = req.body;
+
+    let selectString = `
+      SELECT * FROM users
+      WHERE username = $1 OR email = $2
+    `;
+
+    let insertString = `
+      INSERT INTO users (username, email, password)
+      VALUES ($1, $2, $3)
+      RETURNING *;
+    `;
+    let selectParams = [username, email];
+    let insertParams = [username, email, bcrypt.hashSync(password, 10)];
+
+    db.query(selectString, selectParams);
+    if (username && email && password) {
+      db.query(insertString, insertParams)
+        .then((data) => {
+          req.session = {
+            userID: data.rows[0].id,
+            userEmail: data.rows[0].email,
+            userName: data.rows[0].username,
+          };
+          res.render('index', req.session);
+        })
+        .catch((err) => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+    } else {
+      res.send("Please enter valid email and/or password");
+      res.redirect('/users/register');
+    }
+  });
+
   return router;
 };
