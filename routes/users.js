@@ -21,6 +21,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
   router.get('/login', (req, res) => {
     const userID = req.session.userID;
     if (userID) {
