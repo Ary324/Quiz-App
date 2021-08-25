@@ -33,10 +33,6 @@ module.exports = (db) => {
     }
   });
 
-  router.get('/quiz', (req, res) => {
-      res.render('take_quiz');
-  });
-
   router.post('/login', (req, res) => {
     const { email, password } = req.body;
 
@@ -90,7 +86,7 @@ module.exports = (db) => {
     `;
 
     let insertString = `
-      INSERT INTO users (username, email, password)
+      INSERT INTO users (username, email, password)0
       VALUES ($1, $2, $3)
       RETURNING *;
     `;
