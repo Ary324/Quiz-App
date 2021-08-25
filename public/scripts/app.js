@@ -8,7 +8,8 @@ $(() => {
       $('.content-table').append(`
       <tr>
           <td>${row.subject}</td>
-          <td><a href="">Take Quiz</a></td>
+          <td>${row.description}</td>
+          <td><a href="/users/quiz">Take Quiz</a></td>
       </tr>
       `)
     }

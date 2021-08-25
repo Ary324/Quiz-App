@@ -41,5 +41,9 @@ module.exports = (db) => {
     }
   });
 
+  router.get('/quiz', (req, res) => {
+    res.render("take_quiz");
+  });
+
   return router;
 };
