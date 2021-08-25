@@ -14,13 +14,22 @@ module.exports = (db) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const users = data.rows;
-        res.json({ users });
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
+    let templateVars = {
+      user: null
+    };
+    if (req.session.userID) {
+      const user = req.session.userID;
+      templateVars = {
+        user
+      };
+    }
+    res.render('index', templateVars);
   });
 
   router.get('/login', (req, res) => {
@@ -101,7 +110,7 @@ module.exports = (db) => {
             userEmail: data.rows[0].email,
             userName: data.rows[0].username,
           };
-          res.render('index', req.session);
+          res.render('index', {user: req.session.userID});
         })
         .catch((err) => {
           res
