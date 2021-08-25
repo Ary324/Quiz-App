@@ -77,10 +77,6 @@ module.exports = (db) => {
     }
   });
 
-  router.get('/quiz', (req, res) => {
-    res.render("take_quiz");
-  });
-
   router.post('/register', (req, res) => {
     const { username, email, password } = req.body;
 
@@ -90,7 +86,7 @@ module.exports = (db) => {
     `;
 
     let insertString = `
-      INSERT INTO users (username, email, password)0
+      INSERT INTO users (username, email, password)
       VALUES ($1, $2, $3)
       RETURNING *;
     `;
@@ -120,4 +116,4 @@ module.exports = (db) => {
   });
 
   return router;
-};
+}
