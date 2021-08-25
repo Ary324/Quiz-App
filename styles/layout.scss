@@ -103,6 +103,14 @@ main {
 	padding:16px 31px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #55d6aa;
+
+}
+
+.myButton.quiz:hover{
+	background-color:green;
+}
+.myButton.quiz{
+	width: 60%;
 }
 
 .myButton:active {
@@ -110,6 +118,22 @@ main {
 	top:1px;
 }
 
+.answers{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quiz-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box {
+  padding-bottom: 2em;
+  border: solid black;
+}
 
 
 

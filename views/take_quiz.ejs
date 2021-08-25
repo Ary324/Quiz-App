@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Take Quiz</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -16,21 +16,23 @@
   <%- include('headers_footers/_headers') %>
 
     <main>
-      <table class="content-table">
-        <thead>
-          <tr>
-            <th>Quiz Catagory</th>
-            <th>Quiz Description</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody class='content-body'>
-        </tbody>
-      </table>
-      <div>
-        <h1>Create your own quiz and share it with friends!</h1>
-        <a href="/users/create_quiz" class="myButton">Create Quiz</a>
-      </div>
+<div class="box">
+
+  <div class='quiz-description'>
+    <p>quiz name</p>
+    <p>quiz description</p>
+  </div>
+
+    <div class="answers">
+      <p>question 1</p>
+      <button class="myButton quiz" type="button">Answer</button>
+      <button class="myButton quiz" type="button">Answer</button>
+      <button class="myButton quiz" type="button">Answer</button>
+      <button class="myButton quiz" type="button">Answer</button>
+    </div>
+
+</div>
+
     </main>
 
     <%- include('headers_footers/_footers') %>
