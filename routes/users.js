@@ -119,7 +119,27 @@ module.exports = (db) => {
     return res.render('take_quiz', templateVars);
   });
 
-  router.get('user-quiz-page', (req, res) => {
+  router.get('/user-quizzes', (req, res) => {
+    db.query(`
+    SELECT *
+    FROM quizzes
+    JOIN questions ON quizzes.id = questions.quiz_id
+    JOIN answers ON questions.id = answers.question_id
+    WHERE users.id = ${req.session.id}
+    GROUP BY quizzes.subject;`)
+      .then(data => {
+
+        const quizzes = data.rows;
+        return res.json({ quizzes });
+      })
+      .catch(err => {
+        return res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  router.get('/your_quizzes'), (req,res) => {
     let templateVars = {
       user: null
     };
@@ -128,6 +148,37 @@ module.exports = (db) => {
       templateVars = { user };
     }
     return res.render('your_quizzes', templateVars);
+  };
+
+  router.get('/score', (req, res) => {
+    db.query(`
+    SELECT *
+    FROM quizzes
+    JOIN questions ON quizzes.id = questions.quiz_id
+    JOIN answers ON questions.id = answers.question_id
+    WHERE quizzes.id = ${req.session.id};
+    `)
+      .then(data => {
+
+        const score = data.rows;
+        return res.json({ score });
+      })
+      .catch(err => {
+        return res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  router.get('/result', (req, res) => {
+    let templateVars = {
+      user: null
+    };
+    if (req.session.userID) {
+      const user = req.session.userID;
+      templateVars = { user };
+    }
+    return res.render('result', templateVars);
   });
 
 
