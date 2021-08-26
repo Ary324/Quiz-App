@@ -119,6 +119,18 @@ module.exports = (db) => {
     return res.render('take_quiz', templateVars);
   });
 
+  router.get('user-quiz-page', (req, res) => {
+    let templateVars = {
+      user: null
+    };
+    if (req.session.userID) {
+      const user = req.session.userID;
+      templateVars = { user };
+    }
+    return res.render('your_quizzes', templateVars);
+  });
+
+
   router.post('/register', (req, res) => {
     const { username, email, password } = req.body;
 
