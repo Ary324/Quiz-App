@@ -156,7 +156,7 @@ module.exports = (db) => {
     FROM quizzes
     JOIN questions ON quizzes.id = questions.quiz_id
     JOIN answers ON questions.id = answers.question_id
-    WHERE quizzes.id = ${req.session.id};
+    WHERE users.id = ${req.session.id};
     `)
       .then(data => {
 
