@@ -1,0 +1,35 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+  background-color: lightseagreen;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-top: 150px;
+  margin-bottom: auto;
+  margin-right: 2em;
+  margin-left: auto;
+  width: 90%;
+  background-color: lightblue;
+}
+
+.form-inline {
+  border: none;
+  border-bottom: 1px solid #e7e7e7;
+  border-radius: 5px;
+  padding: 0.6em 0.4em;
+  min-height: 3em;
+  font-size: 1.1em;
+  font-weight: normal;
+}
+
+#home-page {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10em;
+}
+
+
