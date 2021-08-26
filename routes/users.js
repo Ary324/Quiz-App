@@ -11,27 +11,48 @@ const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM quizzes;`)
-      .then(data => {
-        const rows = data.rows;
-        console.log(rows, 'hey im rows');
-        res.json({ rows });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
     let templateVars = {
       user: null
     };
     if (req.session.userID) {
       const user = req.session.userID;
-      templateVars = {
-        user
-      };
+      templateVars = { user };
     }
-    res.render('index', templateVars);
+    return res.render('index', templateVars);
+
+  });
+
+  router.get("/quizzes", (req, res) => {
+    db.query(`SELECT * FROM quizzes;`)
+      .then(data => {
+        const quizzes = data.rows;
+        return res.json({ quizzes });
+      })
+      .catch(err => {
+        return res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+  router.get("/questions/:id", (req, res) => {
+    db.query(`
+    SELECT questions.*, quizzes.subject, quizzes.description, ARRAY_AGG(answer) answer
+    FROM quizzes
+    JOIN questions ON quizzes.id = questions.quiz_id
+    JOIN answers ON questions.id = answers.question_id
+    WHERE quizzes.id = ${req.params.id}
+    GROUP BY questions.id, quizzes.subject, quizzes.description;`)
+      .then(data => {
+
+        const questions = data.rows;
+        return res.json({ questions });
+      })
+      .catch(err => {
+        return res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
   router.get('/login', (req, res) => {
@@ -87,8 +108,15 @@ module.exports = (db) => {
     }
   });
 
-  router.get('/quiz', (req, res) => {
-    res.render("take_quiz");
+  router.get('/quiz/:id', (req, res) => {
+    let templateVars = {
+      user: null
+    };
+    if (req.session.userID) {
+      const user = req.session.userID;
+      templateVars = { user };
+    }
+    return res.render('take_quiz', templateVars);
   });
 
   router.post('/register', (req, res) => {
