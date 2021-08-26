@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>create quiz</title>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+</head>
+<body>
+  <header>
+    <%- include('./headers_footers/_headers') %>
+  </header><li>
+  <main class= "container">
+    <div class= "content-table">
+    <h1> Make Your Own Quiz!</h1>
+    <form method="POST" action="/quizzes/createquiz">
+      <label for="subject">Quiz Name:</label>
+        <input id="quiz-title" type="text" name="subject">
+        <br>
+        <br>
+        <label for="description"> Quiz Subject:</label>
+        <input id="quiz-description" type="text" name="description">
+        <br>
+        <h2 class="question_title">Please Type Question</h2>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            id="question_text"
+            name="question"
+            placeholder="Enter your Question"
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            id="answer1"
+            name="answer1"
+            placeholder="Answer 1"
+            rows="1"
+          ></textarea>
+          <input type="radio" name="is_correct1" value="true">Is It correct?</input>
+        </div>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            id="answer2"
+            name="answer2"
+            placeholder="Answer 2"
+            rows="1"
+          ></textarea>
+          <input type="radio" name="is_correct2" value="true">Is It correct?</input>
+        </div>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            id="answer3"
+            placeholder="Answer 3"
+            name="answer3"
+            rows="1"
+          ></textarea>
+          <input type="radio" name="is_correct3" value="true">Is It correct?</input>
+        </div>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            id="answer4"
+            name="answer4"
+            placeholder="Answer 4"
+            rows="1"
+          ></textarea>
+          <input type="radio" name="is_correct4" value="true">Is It correct?</input>
+        </div>
+          </div>
+        </div>
+        <div class="privacy">
+          <input id="is-private" type="radio" name="available_to_public" value="true"> Make private?</input>
+          <input id="is-public" type="radio" name="available_to_public" value="false"> Make public?</input>
+          <br>
+        </div>
+      <button type="submit" class="myButton"> Add Question!</button>
+    </form>
+  </div>
+</main>
+</li>
+</body>
+</html>

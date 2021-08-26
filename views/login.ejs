@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <link rel="stylesheet" href="/styles/login.css" type="text/css" />
   <title>QuizApp</title>
 </head>
 
@@ -13,17 +14,16 @@
   <main style="margin: 1em;">
 
 
-    <h3>Login</h3>
-
-
     <form class="form-inline" action="/users/login" method="POST">
 
       <h5 class="card-title">Email address</h5>
-      <input class="form-control" type="email" name="email" placeholder="Enter email" style="width: 300px; margin: 1em" required>
+      <input class="form-control" type="email" name="email" placeholder="Enter email" style="width: 300px; margin: 3em"
+        required>
 
 
       <h5 class="card-title">Password</h5>
-      <input class="form-control" type="password" name="password" placeholder="Password" style="width: 300px; margin: 1em" required>
+      <input class="form-control" type="password" name="password" placeholder="Password"
+        style="width: 300px; margin: 3em" required>
 
 
       <button type="submit" class="btn btn-primary">Login</button>
@@ -31,7 +31,12 @@
     <a type="text" class="font-weight-bold" href="/users/register">
       Don't have an Account?
     </a>
-
+    <div id="home-page">
+      <a type="text" class="font-weight-bold" href="/users/">
+        Home
+      </a>
+    </div>
   </main>
-  </body>
+</body>
+
 </html>

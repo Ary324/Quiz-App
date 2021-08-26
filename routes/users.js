@@ -11,13 +11,45 @@ const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    let templateVars = {
+      user: null
+    };
+    if (req.session.userID) {
+      const user = req.session.userID;
+      templateVars = { user };
+    }
+    return res.render('index', templateVars);
+
+  });
+
+  router.get("/quizzes", (req, res) => {
+    db.query(`SELECT * FROM quizzes;`)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        const quizzes = data.rows;
+        return res.json({ quizzes });
       })
       .catch(err => {
-        res
+        return res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+  router.get("/questions/:id", (req, res) => {
+    db.query(`
+    SELECT questions.*, quizzes.subject, quizzes.description, ARRAY_AGG(answer) answer
+    FROM quizzes
+    JOIN questions ON quizzes.id = questions.quiz_id
+    JOIN answers ON questions.id = answers.question_id
+    WHERE quizzes.id = ${req.params.id}
+    GROUP BY questions.id, quizzes.subject, quizzes.description;`)
+      .then(data => {
+
+        const questions = data.rows;
+        return res.json({ questions });
+      })
+      .catch(err => {
+        return res
           .status(500)
           .json({ error: err.message });
       });
@@ -76,6 +108,80 @@ module.exports = (db) => {
     }
   });
 
+  router.get('/quiz/:id', (req, res) => {
+    let templateVars = {
+      user: null
+    };
+    if (req.session.userID) {
+      const user = req.session.userID;
+      templateVars = { user };
+    }
+    return res.render('take_quiz', templateVars);
+  });
+
+  router.get('/user-quizzes', (req, res) => {
+    db.query(`
+    SELECT *
+    FROM quizzes
+    JOIN questions ON quizzes.id = questions.quiz_id
+    JOIN answers ON questions.id = answers.question_id
+    WHERE users.id = ${req.session.id}
+    GROUP BY quizzes.subject;`)
+      .then(data => {
+
+        const quizzes = data.rows;
+        return res.json({ quizzes });
+      })
+      .catch(err => {
+        return res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  router.get('/your_quizzes'), (req,res) => {
+    let templateVars = {
+      user: null
+    };
+    if (req.session.userID) {
+      const user = req.session.userID;
+      templateVars = { user };
+    }
+    return res.render('your_quizzes', templateVars);
+  };
+
+  router.get('/score', (req, res) => {
+    db.query(`
+    SELECT *
+    FROM quizzes
+    JOIN questions ON quizzes.id = questions.quiz_id
+    JOIN answers ON questions.id = answers.question_id
+    WHERE quizzes.id = ${req.session.id};
+    `)
+      .then(data => {
+
+        const score = data.rows;
+        return res.json({ score });
+      })
+      .catch(err => {
+        return res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  router.get('/result', (req, res) => {
+    let templateVars = {
+      user: null
+    };
+    if (req.session.userID) {
+      const user = req.session.userID;
+      templateVars = { user };
+    }
+    return res.render('result', templateVars);
+  });
+
+
   router.post('/register', (req, res) => {
     const { username, email, password } = req.body;
 
@@ -85,7 +191,7 @@ module.exports = (db) => {
     `;
 
     let insertString = `
-      INSERT INTO users (username, email, password)
+      INSERT INTO users (username, email, password)0
       VALUES ($1, $2, $3)
       RETURNING *;
     `;
@@ -101,7 +207,7 @@ module.exports = (db) => {
             userEmail: data.rows[0].email,
             userName: data.rows[0].username,
           };
-          res.render('index', req.session);
+          res.render('index', { user: req.session.userID });
         })
         .catch((err) => {
           res

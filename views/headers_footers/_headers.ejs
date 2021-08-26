@@ -1,11 +1,20 @@
 <header>
   <div class="container">
     <img src="/assets/logo.png" alt="logo" class="logo">
-  <nav>
-    <ul>
-      <li><a href="/users/login">Login</a></li>
-      <li><a href="/users/register">Register</a></li>
-    </ul>
-  </nav>
+    <nav>
+      <ul>
+        <% if (user){ %>
+          <li>
+            <form method="post" action="/users/logout">
+              <a onclick="this.parentNode.submit();">Logout</a>
+            </form>
+          </li>
+          <li><a href="/users/register">Register</a></li>
+          <%} else{ %>
+            <li><a href="/users/login">Login</a></li>
+            <li><a href="/users/register">Register</a></li>
+            <% } %>
+      </ul>
+    </nav>
   </div>
 </header>
