@@ -21,4 +21,4 @@ $(() => {
   // $(document).on("click", ".table-link", function (event) {
   //   console.log(event.currentTarget)
   // })
-});
+
