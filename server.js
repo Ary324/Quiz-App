@@ -46,9 +46,9 @@ const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
+//app.use("/api/users", usersRoutes(db));
 app.use("/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+//app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -59,9 +59,9 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   const userID = req.session.userID;
   if (userID) {
-    res.redirect('/your_quizzes');
+    return res.redirect('/your_quizzes');
   } else {
-    res.render('index');
+    return res.render('index');
   }
 });
 
