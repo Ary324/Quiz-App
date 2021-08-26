@@ -116,7 +116,7 @@ module.exports = (db) => {
             userEmail: data.rows[0].email,
             userName: data.rows[0].username,
           };
-          res.render('index', {user: req.session.userID});
+          res.render('index', { user: req.session.userID });
         })
         .catch((err) => {
           res
