@@ -50,12 +50,9 @@ const quizRoutes = require("./routes/quizzes");
 // Note: Feel free to replace the example routes below with your own
 //app.use("/api/users", usersRoutes(db));
 app.use("/users", usersRoutes(db));
-<<<<<<< HEAD
 app.use("/quizzes", quizRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-=======
 //app.use("/api/widgets", widgetsRoutes(db));
->>>>>>> 1907b9dfc2174e07f0f902144966c28a72a47d79
 // Note: mount other resources here, using the same pattern above
 
 
