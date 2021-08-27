@@ -6,7 +6,7 @@ $(() => {
     //console.log('data........',data);
     const quizzes = data.quizzes;
     //console.log('quizz........', quizzes);
-    for(let quiz of quizzes){
+    for (let quiz of quizzes) {
 
       $('.content-table').append(`
       <tr>
@@ -17,8 +17,8 @@ $(() => {
       `)
     }
   });
-  });;
+});;
   // $(document).on("click", ".table-link", function (event) {
   //   console.log(event.currentTarget)
   // })
-});
+

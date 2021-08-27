@@ -191,7 +191,7 @@ module.exports = (db) => {
     `;
 
     let insertString = `
-      INSERT INTO users (username, email, password)0
+      INSERT INTO users (username, email, password)
       VALUES ($1, $2, $3)
       RETURNING *;
     `;
@@ -222,7 +222,7 @@ module.exports = (db) => {
 
   router.get("/createquiz", (req, res) => {
     console.log("req.session.userID", req.session.userID);
-    let templateVar = { userID: req.session.userID };
+    let templateVar = { user: req.session.userID };
     res.render('createquiz', templateVar);
   });
 
@@ -270,10 +270,23 @@ module.exports = (db) => {
         return db.query(query2, values);
       })
       .then(data => {
-
-        res.redirect(`/quiz/${quizid}`);
+        console.log(data.rows[0].id, "I am userid");
+        console.log(data.quizid);
+        console.log(data);
+        res.redirect("/users");
       })
       .catch(error => console.log(error));
+  });
+
+  router.post("/return_home", (req, res) => {
+    let templateVars = {
+      user: null
+    };
+    if (req.session.userID) {
+      const user = req.session.userID;
+      templateVars = { user };
+    }
+    res.redirect("/", templateVars);
   });
 
   return router;
