@@ -16,9 +16,9 @@
 <body>
   <header>
     <%- include('./headers_footers/_headers') %>
-  </header><li>
+  </header>
   <main class= "container">
-    <div class= "content-table">
+    <div class= "quiz-content">
     <h1> Make Your Own Quiz!</h1>
     <form method="POST" action="/quizzes/createquiz">
       <label for="subject">Quiz Name:</label>
@@ -78,17 +78,16 @@
           ></textarea>
           <input type="radio" name="is_correct4" value="true">Is It correct?</input>
         </div>
-          </div>
-        </div>
         <div class="privacy">
           <input id="is-private" type="radio" name="available_to_public" value="true"> Make private?</input>
           <input id="is-public" type="radio" name="available_to_public" value="false"> Make public?</input>
           <br>
         </div>
-      <button type="submit" class="myButton"> Add Question!</button>
-    </form>
+        <button type="submit" class="myButton"> Add Question!</button>
+        </div>
+        </div>
+        </form>
   </div>
 </main>
-</li>
 </body>
 </html>

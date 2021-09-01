@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/user_quizzes.js"></script>
+</head>
+
+<body>
+  <%- include('headers_footers/_headers') %>
+
+    <main>
+      <table class="content-table">
+        <thead>
+          <tr>
+            <th>Quiz Category</th>
+            <th>Quiz Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class='content-body'>
+        </tbody>
+      </table>
+      <div>
+        <h1>Create your own quiz and share it with friends!</h1>
+        <a href="/users/create_quiz" class="myButton">Create Quiz</a>
+      </div>
+    </main>
+    <%- include('headers_footers/_footers') %>
+</body>
+
+</html>

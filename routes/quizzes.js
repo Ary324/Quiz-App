@@ -4,7 +4,7 @@ module.exports = (db) => {
 // creating a quiz page
 router.get("/createquiz", (req, res) => {
   console.log("req.session.userID",req.session.userID);
-      let templateVar = { userID: req.session.userID };
+      let templateVar = { user: req.session.userID };
       res.render('createquiz', templateVar);
 });
 
